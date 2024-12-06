@@ -2,7 +2,6 @@ import math
 from random import random
 #declare random number variable
 randomNumber = math.floor((random()*10))
-print(randomNumber)
 
 guess = int (input('enter a number'))
 # check if the guess is less than random number
