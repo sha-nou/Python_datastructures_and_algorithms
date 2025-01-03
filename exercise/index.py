@@ -2,7 +2,7 @@ import math
 from random import random
 
 rand=math.floor((random())*10)
-print(rand)
+
 
 x =input('enter a value')
 if(x>10):

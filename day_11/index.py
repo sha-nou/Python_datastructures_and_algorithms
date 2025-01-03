@@ -49,7 +49,7 @@ def calculator():
     while True:
         try:
              choice = input("Enter choice\n")
-             if choice not in ['1', '2', '3', '4']:
+             if choice not in ['1', '2', '3', '4','5']:
                     raise ValueError("Invalid choice,please select valid operation")
              num1 = float(input("Enter first number\n"))
              num2 = float(input("Enter second number\n"))

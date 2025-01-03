@@ -6,7 +6,7 @@ i = 0
 for i in range(0,13):
     result = i*num
     i += 1
-    print(f"{i} x{num} ={result}")
+    print(f" {i} x {num} = {result}")
 
 #Case:2 Using While loop
 
