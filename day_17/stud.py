@@ -27,27 +27,35 @@ def studBase():
                   continue
          
           elif choice == '2':
+            student_exist=False
             for i in students:
-                if i[0] == name:
-                    print(f'Name: {i[0]}, Class: {i[1]}')
-                    new_level=input('enter your new class')
-                    if new_level.isnumeric():
-                        i[1]=new_level
-                        return students
+                    if i['name'] == name:
+                            student_exist=True
+                            break
+                    if student_exist:
+                        new_level = input('enter your new class\n')
+                        if new_level.isnumeric():
+                            print(students)
+                        else:
+                            print('try again')
+                            continue
                     else:
-                        print('please enter valid level')
+                        print('student not found')
                         continue
-          elif choice == '3':
-             for i in students:
-                 if i[0] == name:
-                     students.remove(i)
-                     return students
-                 else:
-                     print('student not found')
-                     continue    
+          elif choice == 3:
+              student_exist=False
+              for i in students:
+                    if i['name'] == name:
+                        student_exist=True
+                        break
+                    if student_exist:
+                        students.remove(i)
+                        print(students)
+                    else:
+                        print('student not found')
+                        continue 
           elif choice == 4:
-             for i in students:
-                 print(f'Name: {i[0]}, Class: {i[1]}')
+              print(students)
           elif choice == 5:
              print('Exiting the program')
              break
