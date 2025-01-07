@@ -1,99 +1,79 @@
-jhreuygyrejjhawueyyufhghgfd
-
-# class CustomAuth(AuthBase):
-#     def __init__(self,name,password,header,user_agent):
-#         self.name=name
-#         self.password =password
-#         self.header=header
-#         self.user_agent=user_agent
-#     def __call__(self, r):
-#         r.headers['x-headers']=self.header
-#         r.headers['user_agent']=self.user_agent
-#         r.headers['Authorization'] = _basic_auth_str(self.name,self.password)
-#         return r
-    
-# auth=get('http://test.com/admin',checkAuth=CustomAuth('user','password'))
-     
-# with open('new','x') as f:
-#     f.write('hello world')
-# with open('document.txt','x') as f:
-#     f.write('jhreuygyrejjhawueyyufhghgfd')
-    
-# with open('file','r') as file ,open('newFile','w')  as newFile:
-#     for line in file:
-#         newFile.write(line)
-        
-    
-# with open('new','r') as f:
-#     f.read()
-# with open('document.txt','r') as fp:
-#     while True:
-#         cur_line = fp.readline()
-#         if cur_line == '':
-#             break
-#         print(cur_line)
-
-# dirname='/bin/python3/home'
-# os.path.isdir(dirname)
-
-students=[]
+students = []
 
 def studBase():
-    print('select an operation')
+    print('Select an operation:')
     print('1. Register student')
-    print('2 . Update student Info')
+    print('2. Update student Info')
     print('3. Delete student info')
     print('4. Display all students')
-    print('5 . Exit')
-    
-    
+    print('5. Exit')
+
     while True:
         try:
-         opt=input('choose operation \n')
-         if opt not in ['1','2','3','4','5']:
-            raise ValueError('Try again')
-        
-         name = input('enter your name')
-         level=input('enter your class')
-         if opt == 1:
-             for i in students:
-                 if i[0] == name:
-                     level=input('enter your new class')
-                     if level.isnumeric():
-                         i[1]=level
-                         return students
-                     else:
-                         print('please enter valid level')
-                         continue
-         elif opt == 2:
-            for i in students:
-                if i[0] == name:
-                    print(f'Name: {i[0]}, Class: {i[1]}')
-                    new_level=input('enter your new class')
-                    if new_level.isnumeric():
-                        i[1]=new_level
-                        return students
-                    else:
-                        print('please enter valid level')
-                        continue
-         elif opt == 3:
-             for i in students:
-                 if i[0] == name:
-                     students.remove(i)
-                     return students
-                 else:
-                     print('student not found')
-                     continue
-         elif opt == 4:
-             for i in students:
-                 print(f'Name: {i[0]}, Class: {i[1]}')
-         elif opt == 5:
-             print('Exiting the program')
-             break
-         else:
-            raise ValueError('Try again')
-        except ValueError as error:
-            print(error)
-            
+            choice = input('Enter an option: \n')
+            if choice not in ['1', '2', '3', '4', '5']:
+                raise ValueError('Invalid choice')
 
+            # Process student name only when required
+            if choice in ['1', '2', '3']:
+                name = input('Enter your name: \n')
+                level = input('Enter your class: \n')
+                if not level.isnumeric():
+                    print("Please enter a valid class (numeric).")
+                    continue
+            # Handle each option
+            if choice == '1':  # Register student
+                studInfo = {"name": name, "class": level}
+                students.append(studInfo)
+                print(f'Student {name} registered successfully.')
+                
+            elif choice == '2':  # Update student info
+                student_found = False
+                for student in students:
+                    if student['name'] == name:
+                        student_found = True
+                        print(f'Current info - Name: {student["name"]}, Class: {student["class"]}')
+                        new_level = input('Enter your new class: \n')
+                        if new_level.isnumeric():
+                            student['class'] = new_level
+                            print(f'Student {name} updated successfully.')
+                            break
+                        else:
+                            print('Please enter a valid class (numeric).')
+                            break
+                if not student_found:
+                    print(f'Student {name} not found.')
+
+            elif choice == '3':  # Delete student info
+                student_found = False
+                for student in students:
+                    if student['name'] == name:
+                        student_found = True
+                        students.remove(student)
+                        print(f'Student {name} deleted successfully.')
+                        break
+                if not student_found:
+                    print(f'Student {name} not found.')
+
+            elif choice == '4':  # Display all students
+                if not students:
+                    print('No students found.')
+                else:
+                    for student in students:
+                        print(f'Name: {student["name"]}, Class: {student["class"]}')
+            
+            elif choice == '5':  # Exit
+                print('Exiting the program.')
+                break
+
+        except ValueError:
+            print('Invalid input. Please try again.')
+
+        finally:
+            new_choice = input('Do you wish to continue (yes/no)? ')
+            if new_choice.lower() != 'yes':
+                print('Exiting program.')
+                break
+
+# Start the student management system
 studBase()
